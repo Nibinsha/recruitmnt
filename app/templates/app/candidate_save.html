@@ -1,0 +1,207 @@
+{% extends "base.html" %}
+
+{% block body_block %}
+
+<form method="post" style = "padding: 20px; padding-left: 150px;">
+  {% csrf_token %}
+
+  {# {{ form.as_p }} #}
+
+<div class="container">
+  	<h3>Basic Details</h3><br/>
+   <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label>First Name</label>
+      
+      {{ form.first_name }}
+    </div>
+    <div class="col-md-4 mb-3">
+      <label>Last Name</label>
+      {{ form.last_name }}
+    </div>
+    <div class="col-md-4 mb-3">
+      <label>Age</label>
+      {{ form.age }}
+    </div>
+  </div>
+   <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label>DOB</label>
+      {{ form.dob }}
+    </div>
+    <div class="col-md-4 mb-3">
+      <label>Primary Mobile</label>
+      {{ form.primary_mob_no }}
+    </div>
+    <div class="col-md-4 mb-3">
+      <label>Secondary Mobile</label>
+      {{ form.secondary_mob_no }}
+    </div>
+   
+  </div>
+
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label>Passport Number</label>
+      {{ form.passport_no }}
+    </div>
+    <div class="col-md-4 mb-3">
+      <label>Passpost Expiry Date</label>
+      {{ form.passport_expery_date }}
+    </div>
+    <div class="col-md-4 mb-3">
+      <label>Job Category</label>
+      {{ form.job_category }}
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label>Document Files</label>
+      {{ form.document_files }}
+    </div>
+    <div class="col-md-4 mb-3">
+      <label>Total Experence</label>
+      {{ form.total_experence }}
+    </div>
+    <div class="col-md-4 mb-3">
+      <label>Abroad Experence</label>
+      {{ form.abroad_experence }}
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label>Interview Status</label>
+      {{ form.interview_status }}
+    </div>
+    <div class="col-md-4 mb-3">
+      <label>Visa Approval Status</label>
+      {{ form.visa_approval_status }}
+    </div>
+    <div class="col-md-4 mb-3">
+      <label>Salary Details</label>
+      {{ form.salary_details }}
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label>Passport Status</label>
+      
+      {{ form.passport_status }}
+    </div>
+    <div class="col-md-4 mb-3">
+      <label>Departure Date</label>
+      {{ form.departure_date }}
+    </div>
+    <div class="col-md-4 mb-3">
+    </div>
+  </div>
+
+
+<br/><br/>
+  	<h3>Interview Details</h3><br/>
+   <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label>Interview Company</label>
+      {{ form.intervew_company }}
+    </div>
+    <div class="col-md-4 mb-3">
+      <label>Scheduled On</label>
+      {{ form.scheduled_on }}
+    </div>
+    <div class="col-md-4 mb-3">
+      <label>Duration</label>
+      {{ form.duration_in_min }}
+    </div>
+  </div>
+
+	<br/><br/>
+  	<h3>Licence  Details</h3><br/>
+   <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label>Licence ID</label>
+      {{ form.licence_id }}
+    </div>
+    <div class="col-md-4 mb-3">
+      <label>Country</label>
+      {{ form.country }}
+    </div>
+    <div class="col-md-4 mb-3">
+      <label>Valid upto</label>
+      {{ form.valid_up_to }}
+    </div>
+  </div>
+
+	<div class="form-row">
+    <div class="col-md-4 mb-3">
+         <a href={% url 'mailing' %} class="btn btn-secondary btn-lg active" role="button">Send To Company</a>
+
+    </div>
+    <div class="col-md-8 mb-8">
+        <button type="candidate_save" style="
+    width: 200px;
+    height: 35px;
+    margin-top: 50px;
+    border-radius: 10px;
+    color: #fff;
+    background: #5d5b6a;
+">save</button>
+
+
+    </div>
+    <div class="col-md-4 mb-3">
+    </div>
+
+</div>
+
+  <!--
+<div class ='basic_candidate'>
+<br> <label style="width: 280px;">FIRST NAME </label> {{ form.first_name }}</br>
+<br> <label style="width: 280px;">LAST NAME </label> {{ form.last_name }} </br>
+<br> <label style="width: 280px;">PRIMARY MOBILE </label> {{ form.primary_mob_no }}</br>
+<br> <label style="width: 280px;">SECONDARY MOBILE </label> {{ form.secondary_mob_no }}</br>
+<br> <label style="width: 280px;"> AGE </label>  {{ form.age }} </br>
+<br> <label style="width: 280px;"> DOB </label>  {{ form.dob }} </br>
+<br> <label style="width: 280px;"> PASSPORT NUMBER </label>  {{ form.passport_no }} </br>
+<br> <label style="width: 280px;"> passport_expery_date </label>  {{ form.passport_expery_date }} </br>
+<br> <label style="width: 280px;"> job_category </label>  {{ form.job_category }} </br>
+<br> <label style="width: 280px;"> document_files </label>  {{ form.document_files }} </br>
+<br> <label style="width: 280px;"> total_experence </label>  {{ form.total_experence }} </br>
+<br> <label style="width: 280px;"> abroad_experence </label>  {{ form.abroad_experence }} </br>
+<br> <label style="width: 280px;"> interview_status </label>  {{ form.interview_status }} </br>
+<br> <label style="width: 280px;"> visa_approval_status </label>  {{ form.visa_approval_status }} </br>
+<br> <label style="width: 280px;"> salary_details </label>  {{ form.salary_details }} </br>
+<br> <label style="width: 280px;"> passport_status </label>  {{ form.passport_status }} </br>
+<br> <label style="width: 280px;"> departure_date </label>  {{ form.departure_date }} </br>
+</div>
+
+<div class= licence>
+	<h3> INTERVIEW DETAILS </h3>
+
+	<br> <label style="width: 280px;"> intervew_company </label>  {{ form.intervew_company }} </br>
+	<br> <label style="width: 280px;"> scheduled_on </label>  {{ form.scheduled_on }} </br>
+	<br> <label style="width: 280px;"> duration </label>  {{ form.duration_in_min }} </br>
+
+
+	</div>
+
+<div>
+	<h3> Licence DETAILS </h3>
+	<br> <label style="width: 280px;"> licence_id </label> {{ form.licence_id }} </br>
+	<br> <label style="width: 280px;"> country </label> {{ form.country }} </br>
+	<br> <label style="width: 280px;"> valid_up_to </label> {{ form.valid_up_to }} </br>
+</div>
+  <button type="candidate_save" style="
+    width: 200px;
+    height: 35px;
+    margin-top: 50px;
+    border-radius: 10px;
+    color: #fff;
+    background: #5d5b6a;
+">save</button>
+-->
+</form>
+
+{% endblock %}

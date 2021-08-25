@@ -1,0 +1,9 @@
+<h2>Login to SaralGyaan</h2>
+<form method="post" >
+  {% csrf_token %}
+  {# {{ formset.as_p }} #}
+  {% for form in formset %}
+  	{{formset}}
+  <button type="candidate_save">save</button>
+  {% endfor %}
+</form>
