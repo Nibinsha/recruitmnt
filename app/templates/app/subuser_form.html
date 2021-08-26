@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block body_block %}
+<!-- <h2>Login to SaralGyaan</h2>
+<form method="post" >
+  {% csrf_token %}
+  {{ form.as_table }}
+ 
+  <button type="candidate_save">save</button>
+</form> -->
+
+
+
+<form method="post" style = "padding: 20px; padding-left: 150px;">
+  {% csrf_token %}
+
+  {# {{ form.as_p }} #}
+
+<div class="container">
+  	<h3>Basic Details</h3><br/>
+   <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label> Name</label>
+      
+     {{ form.username }}
+    </div>
+    <div class="col-md-4 mb-3">
+      <label>Password</label>
+      {{ form.password }}
+    </div>
+    
+  </div>
+   <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label>Email</label>
+      {{ form.email }}
+    </div>
+    <div class="col-md-4 mb-3">
+      <label>Phone</label>
+      {{ form.phone }}
+    </div>
+  </div>
+</div>
+	<div class="form-row">
+    <div class="col-md-4 mb-3">
+
+    </div>
+    <div class="col-md-4 mb-3">
+        <button type="candidate_save" style="
+    width: 200px;
+    height: 35px;
+    margin-top: 50px;
+    border-radius: 10px;
+    color: #fff;
+    background: #5d5b6a;
+">save</button>
+
+    </div>
+    <div class="col-md-4 mb-3">
+    </div>
+</form>
+
+{% endblock %}
