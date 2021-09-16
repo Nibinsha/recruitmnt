@@ -21,13 +21,13 @@ class ClientMaster(models.Model):
 class DrvingLicence(models.Model):
 	licence_id = models.CharField(max_length=25)
 	country = models.CharField(max_length=50)
-	valid_up_to = models.DateField(null=False, blank=False)
+	valid_up_to = models.DateField(null=True, blank=True)
 
 
 
 # class UploadFiles(forms.Form):
 # 	title = forms.CharField(max_length=50)
-#     file = forms.FileField()
+#     file = forms.FileField() document_files
 
 class Interview(models.Model):
 	company = models.ForeignKey(ClientMaster, on_delete=models.CASCADE, null=True, blank=True)
@@ -62,13 +62,14 @@ class Candidate(models.Model):
 	job_category = models.CharField(max_length=100, null=True, blank=True)
 	total_experence = models.FloatField(default=0.0, null=True, blank=True)
 	abroad_experence = models.FloatField(default=0.0, null=True, blank=True)
-	document_files = models.FileField(blank=True)
+	document_files = models.FileField(blank=True, upload_to='documents/')
 	interview  = models.ForeignKey(Interview, on_delete=models.CASCADE, null=True, blank=True)
 	interview_status = models.CharField(max_length=40, default = 'not_schedule', choices = status, null=True, blank=True)
 	visa_approval_status = models.BooleanField(default=False)
 	salary_details = models.TextField(null=True, blank=True)
 	passport_status = models.CharField(max_length=40, choices = passport, null=True, blank=True)
 	departure_date = models.DateField(null=True, blank=True)
+	added_date = models.DateField(auto_now=True,null=True,blank=True)
 
 
 

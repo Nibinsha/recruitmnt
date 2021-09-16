@@ -1,9 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-        {% block body_block %}
-        
-        
+        {% block body_block %}    
         <!-- Static Table Start -->
         <div class="data-table-area mg-b-15">
             <div class="container-fluid">
@@ -39,6 +37,7 @@
                                                 <th data-field="lastname" data-editable="true">LAST NAME</th>
                                                 <th data-field="phone" data-editable="true">PHONE</th>
                                                 <th data-field="age" data-editable="true">AGE</th>
+                                                <th data-field="passport_expery_date" data-editable="true">Passport Expiry Date</th>
                                                 <th data-field="job" data-editable="true">JOB CATOGARY</th>
                                                 <th data-field="status" data-editable="true">STATUS</th>
                                                 <th data-field="action">Action</th>
@@ -54,16 +53,15 @@
                                                 <td>{{ i.last_name }}</td>
                                                 <td>{{ i.primary_mob_no }}</td>
                                                 <td>{{ i.age }}</td>
+                                                <td>{{ i.passport_expery_date }}</td>
                                                 <td>{{ i.job_category }}</td>
                                                 <td>{{ i.interview_status }}</td>
-                                                <td class="datatable-ct"> <a href={% url 'candidate_edit' candidate_id=i.id %}> Edit </a>
-                                                    /
-                                                <a href={% url 'candidate_delete' candidate_id=i.id %}> Delete </a>
+                                                <td class="datatable-ct"> <a href={% url 'candidate_edit' candidate_id=i.id %}> View </a>
+                                                <!-- <a href={% url 'candidate_delete' candidate_id=i.id %}> Delete </a> -->
                                                 </td>
                                             </tr>
 
                                             {% endfor%}
-
                                             {% comment %}
                                             {% endcomment %}
                                             

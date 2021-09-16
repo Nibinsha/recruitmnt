@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+{% load static %}
+        {% block body_block %}  
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+        <link href="https://cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css" rel="stylesheet">
+        <link href="https://cdn.datatables.net/datetime/1.1.1/css/dataTables.dateTime.min.css" rel="stylesheet">
+        <style>
+            .exp{
+                    background-color:#ffcccc;
+                }
+        </style> 
+        <!-- Static Table Start -->
+        <div class="data-table-area mg-b-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="sparkline13-list">
+                            <div class="sparkline13-hd">
+                                <div class="main-sparkline13-hd">
+                                    {# <h1>Projects <span class="table-project-n">Data</span> Table</h1> #}
+                                </div>
+                            </div>
+                            <div class="sparkline13-graph">
+                                <div class="datatable-dashv1-list custom-datatable-overright">
+                                    {% comment %}
+                                    <div id="toolbar">
+                                        <select class="form-control dt-tb">
+                                            <option value="">Export Basic</option>
+                                            <option value="all">Export All</option>
+                                            <option value="selected">Export Selected</option>
+                                        </select>
+                                        {% endcomment %}
+                                    </div>
+                                    
+                                    
+                                    <div > <!-- Date input -->
+                                        <label  for="start_date">Start Date</label>
+                                        <input  id="start_date" name="date" placeholder="MM/DD/YYY" type="text" style="width:150px;"/>
+                                        <label  for="end_date" style="margin-left: 40px;">End Date</label>
+                                        <input  id="end_date" name="date" placeholder="MM/DD/YYY" type="text" style="width:150px;"/>
+                                        <button style="margin-left: 40px;" class="btn btn-primary " name="submit" type="submit" id="filter_report">Filter</button>
+                                    </div>
+                                      
+                                    
+                                    <table id="example" data-toggle="table" data-pagination="false" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                                        <thead>
+                                            <tr>
+                                                <th data-field="id">ID</th>
+                                                <th data-field="firstname" data-editable="true">FIRST NAME</th>
+                                                <th data-field="lastname" data-editable="true">LAST NAME</th>
+                                                <th data-field="phone" data-editable="true">PHONE</th>
+                                                <th data-field="age" data-editable="true">AGE</th>
+                                                <th data-field="passport_expery_date" data-editable="true">Passport Expiry Date</th>
+                                                <th data-field="job" data-editable="true">JOB CATOGARY</th>
+                                                <th data-field="added_date" data-editable="true">Added Date</th>
+                                                <th data-field="status" data-editable="true">STATUS</th>
+                                                <!-- <th data-field="action">Action</th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody id="report">
+                                            {% for i in object_list %}
+                                    
+                                                <tr>
+                                                <td>{{ i.id }}</td>
+                                                <td>{{ i.first_name }}</td>
+                                                <td>{{ i.last_name }}</td>
+                                                <td>{{ i.primary_mob_no }}</td>
+                                                <td>{{ i.age }}</td>
+                                                <td>{{ i.passport_expery_date }}</td>
+                                                <td>{{ i.job_category }}</td>
+                                                <td>{{ i.added_date }}</td>
+                                                <td>{{ i.interview_status }}</td>
+                                                <!-- <td class="datatable-ct"> <a href={% url 'candidate_edit' candidate_id=i.id %}> View </a> -->
+                                                <!-- <a href={% url 'candidate_delete' candidate_id=i.id %}> Delete </a> -->
+                                                </td>
+                                            </tr>
+
+                                            {% endfor%}
+
+                                            {% comment %}
+                                            {% endcomment %}
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script>
+                $(document).ready(function(){
+                    var table = document.getElementById("example");
+                    for (var i = 1, row; row = table.rows[i]; i++) {
+                        td_value = row.cells[5].innerHTML
+                        if(td_value != 'None'){
+                            var now = moment();
+                            var current_date = new Date(moment(now).format('YYYY-MM-DD HH:mm:ss'));
+                            current_date = moment(current_date).format('YYYY-MM-DD HH:mm:ss');
+
+                            var expiry_date = new Date(moment(td_value).format('YYYY-MM-DD HH:mm:ss'));
+                            expiry_date = moment(expiry_date).format('YYYY-MM-DD HH:mm:ss');
+
+                            if(expiry_date < current_date ){
+                                row.cells[5].className = "exp";
+                            }else{
+                                td_value = moment(td_value);
+                                var no_of_year = moment.duration(td_value.diff(now)).asYears();
+                                if(no_of_year < 1){
+                                    row.cells[5].className = "exp";
+                                }
+                            }
+                        }
+                    }
+                });
+
+        </script>
+        <script>
+            $(document).ready(function(){
+                var date_input=$('input[name="date"]'); //our date input has the name "date"
+                var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+                var options={
+                format: 'mm/dd/yyyy',
+                container: container,
+                todayHighlight: true,
+                autoclose: true,
+                };
+                date_input.datepicker(options);
+            })
+        </script>
+        <script type="text/javascript" src="{% static 'report.js' %}"></script>
+        {% endblock %}

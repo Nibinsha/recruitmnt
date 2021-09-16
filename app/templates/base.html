@@ -79,6 +79,14 @@
     <!-- modernizr JS
 		============================================ -->
     <script src="{% static 'js/vendor/modernizr-2.8.3.min.js' %}"></script>
+
+    
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css" />
+
+
     {% block mycss %} 
     
     {% endblock mycss %}
@@ -101,6 +109,7 @@
             {% endif %}
         <li><a style="color:white;" href="/company_list" class="nav-link">Companies</a></li>
         <li><a style="color:white;" href="/candidate_list" class="nav-link">Candidates</a></li>
+        <li><a style="color:white;" href="/report" class="nav-link">Report</a></li>
         <li><a style="color:white;" href="/logout" class="nav-link">Logout</a></li>
         </ul>
         </nav>
